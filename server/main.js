@@ -1,31 +1,31 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { ConversationsCollection } from '/imports/api/Conversations.js';
 
-function insertLink({ title, url }) {
-  LinksCollection.insert({title, url, createdAt: new Date()});
+function insertConversation({ text, user }) {
+  ConversationsCollection.insert({text, user, createdAt: new Date()});
 }
 
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.
-  if (LinksCollection.find().count() === 0) {
-    insertLink({
-      title: 'Do the Tutorial',
-      url: 'https://www.meteor.com/tutorials/react/creating-an-app'
+  if (ConversationsCollection.find().count() === 0) {
+    insertConversation({
+      text: 'Hello my name is arshia',
+      user: 'arshia'
     });
 
-    insertLink({
-      title: 'Follow the Guide',
-      url: 'http://guide.meteor.com'
+    insertConversation({
+      text: 'Hi i am not arshia',
+      user: 'notArshia'
     });
 
-    insertLink({
-      title: 'Read the Docs',
-      url: 'https://docs.meteor.com'
+    insertConversation({
+      text: 'Hi Im definitely not Arshia',
+      user: 'definitelyNotArshia'
     });
 
-    insertLink({
-      title: 'Discussions',
-      url: 'https://forums.meteor.com'
+    insertConversation({
+      text: 'Hi I am a random person',
+      user: 'randomPerson'
     });
   }
 });

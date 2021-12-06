@@ -7,7 +7,6 @@ export default class Conversation extends React.Component {
       
         <div>
           <p> this is conversation</p>
-        <Comment/>
         </div>
       
     )
