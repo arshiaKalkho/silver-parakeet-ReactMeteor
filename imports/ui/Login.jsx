@@ -1,20 +1,40 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base'
 import React, { useState } from 'react';
 
 export default function Login(){
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
+const [title, setTitle] = useState('Login');
 
-const submit = e => {
-    e.preventDefault();
-    
-    Meteor.loginWithPassword(username, password);
+
+const submit = () => {
+    if(title === "Login"){
+    console.log("run login")
+        Meteor.loginWithPassword(username, password);
+    }else{
+        console.log("run sugn up")
+        Accounts.createUser({
+            username: username,
+            password: password,
+          })
+    }
 };
+const handleLogin = ()=>{
+    setTitle("Login")
+    submit()
+}
+const handleSignUp = ()=>{
+    setTitle("Sign Up")
+    submit()
+}
 
 return (
-    <form onSubmit={submit} className="login-form">
-    <label htmlFor="username">Username</label>
+    
+    <>
+    
 
+    <label htmlFor="username">Username</label>
     <input
         type="text"
         placeholder="Username"
@@ -33,6 +53,8 @@ return (
         onChange={e => setPassword(e.target.value)}
     />
 
-    <button type="submit">Log In</button>
-    </form>);
+    <button type="submit" onClick={()=>{handleLogin()}}>Log In</button>
+    <button type="submit" onClick={()=>{handleSignUp()}}>Sign Up</button>
+    </>
+    );
 };
