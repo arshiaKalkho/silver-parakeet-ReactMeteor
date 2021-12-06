@@ -1,17 +1,23 @@
 import React , {useState}from 'react'
 
-function newConvForm() {
+import { insertConversation } from '../api/dataServices'
+
+export default function newConvForm(props) {
     
     const[text, setText] = useState("");
 
+    const newPost = ()=>{
+        e.preventDefault()
+        insertConversation(text,props.user)
+    }
 
     
-    
     return (
-    <form className="task-form">
+    <form  onSubmit={newPost} className="task-form">
         <input
         type="text"
         placeholder="reply"
+        onChange={()=>setText(e.target.value)}
         />
     
         <button type="submit">Add Task</button>
@@ -19,4 +25,4 @@ function newConvForm() {
     )
 }
 
-export default newConvForm
+

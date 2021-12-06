@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Conversation(props) {
+export default function Conversation(props) {
   
   const conv = props.obj
     
@@ -14,4 +14,3 @@ function Conversation(props) {
     </div>  
   )
 }
-export default Conversation;

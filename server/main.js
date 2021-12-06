@@ -1,11 +1,26 @@
 import { Meteor } from 'meteor/meteor';
-import { ConversationsCollection } from '/imports/api/Conversations.js';
+import { ConversationsCollection } from '/imports/api/dataServices.js';
+import { Accounts } from 'meteor/accounts-base';
 
-function insertConversation({ text, user }) {
-  ConversationsCollection.insert({text, user, createdAt: new Date()});
+
+export function insertConversation({ text, user }) {
+  ConversationsCollection.insert({content:text, username:user, createdAt: new Date()});
 }
+const SEED_USERNAME = 'default';
+const SEED_PASSWORD = 'default';
 
 Meteor.startup(() => {
+  
+  
+  if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+    Accounts.createUser({
+      username: SEED_USERNAME,
+      password: SEED_PASSWORD,
+    });
+  }
+  const user = Accounts.findUserByUsername(SEED_USERNAME);
+  
+  
   // adding ice breaker if DB is empty
   if (ConversationsCollection.find().count() === 0) {
     insertConversation({
