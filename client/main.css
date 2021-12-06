@@ -6,9 +6,22 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  --color-light: rgb(209, 209, 209);
+  --color-dark: rgb(29, 27, 27);
+  --color-accent: rgb(230, 134, 25);
 }
 body {
   padding: 10px;
   font-family: sans-serif;
-  background-color: grey;
+  background-color: var(--color-dark);
+}
+.conversation-card {
+  background-color: var(--color-light);
+  color: var(--color-accent);
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+.conversation-card > * {
+  margin: 4px;
 }

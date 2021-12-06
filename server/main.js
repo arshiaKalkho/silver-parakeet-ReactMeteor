@@ -6,7 +6,7 @@ function insertConversation({ text, user }) {
 }
 
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
+  // adding ice breaker if DB is empty
   if (ConversationsCollection.find().count() === 0) {
     insertConversation({
       text: 'Hello my name is arshia',
