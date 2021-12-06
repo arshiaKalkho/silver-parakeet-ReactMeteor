@@ -11,7 +11,7 @@ export default function NewConvForm() {
         insertConversation({
             text: text,
             user: user.username
-          })
+        })
     }
 
     
