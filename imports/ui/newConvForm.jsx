@@ -1,27 +1,32 @@
 import React , {useState}from 'react'
-
+import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
 import { insertConversation } from '../api/dataServices'
 
-export default function newConvForm(props) {
-    const user = props.user;
+export default function NewConvForm() {
+    const user = useTracker(() => Meteor.user());
     const[text, setText] = useState("");
 
     const newPost = ()=>{
-        e.preventDefault()
-        insertConversation(text,props.user)
+        insertConversation({
+            text: text,
+            user: user.username
+          })
     }
 
     
     return (
-    <form  onSubmit={newPost} className="task-form">
-        <input
-        type="text"
-        placeholder="reply"
-        onChange={()=>setText(e.target.value)}
-        />
-    
-        <button type="submit">Add Task</button>
-    </form>
+    <div  onSubmit={newPost} className="task-form">
+        logged in as: {user.username}
+        <div>
+            <input
+            type="text"
+            placeholder="reply"
+            onChange={(e)=>setText(e.target.value)}
+            />
+            <button className="addconv-btn" onClick={()=>newPost() }>Add</button>
+        </div>
+    </div>
     )
 }
 

@@ -1,16 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import { ConversationsCollection } from '/imports/api/dataServices.js';
+import { ConversationsCollection , insertConversation} from '/imports/api/dataServices.js';
 import { Accounts } from 'meteor/accounts-base';
 
-
-export function insertConversation({ text, user }) {
-  ConversationsCollection.insert({content:text, username:user, createdAt: new Date()});
-}
 const SEED_USERNAME = 'default';
 const SEED_PASSWORD = 'default';
 
 Meteor.startup(() => {
-  
+  //ConversationsCollection.remove({}) //THIS WILL DELETE ALL DATA ON THE DB for testing
   
   if (!Accounts.findUserByUsername(SEED_USERNAME)) {
     Accounts.createUser({
