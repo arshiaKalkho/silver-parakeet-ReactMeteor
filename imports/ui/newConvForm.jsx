@@ -3,7 +3,7 @@ import React , {useState}from 'react'
 import { insertConversation } from '../api/dataServices'
 
 export default function newConvForm(props) {
-    
+    const user = props.user;
     const[text, setText] = useState("");
 
     const newPost = ()=>{

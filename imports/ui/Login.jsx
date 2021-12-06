@@ -7,54 +7,46 @@ const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const [title, setTitle] = useState('Login');
 
-
-const submit = () => {
-    if(title === "Login"){
-    console.log("run login")
-        Meteor.loginWithPassword(username, password);
-    }else{
-        console.log("run sugn up")
-        Accounts.createUser({
-            username: username,
-            password: password,
-          })
-    }
-};
 const handleLogin = ()=>{
     setTitle("Login")
-    submit()
+    Meteor.loginWithPassword(username, password);
 }
 const handleSignUp = ()=>{
     setTitle("Sign Up")
-    submit()
+    Accounts.createUser({
+        username: username,
+        password: password,
+    })
 }
 
 return (
     
-    <>
-    
+    <div className="login">
+        
+        <div className="login-card">
+            <h3 style={{textAlign:'center'}}>Login/Sign Up</h3>
+            <label htmlFor="username">Username</label>
+            <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                required
+                onChange={e => setUsername(e.target.value)}
+            />
 
-    <label htmlFor="username">Username</label>
-    <input
-        type="text"
-        placeholder="Username"
-        name="username"
-        required
-        onChange={e => setUsername(e.target.value)}
-    />
+            <label htmlFor="password">Password</label>
 
-    <label htmlFor="password">Password</label>
+            <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+                onChange={e => setPassword(e.target.value)}
+            />
 
-    <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        required
-        onChange={e => setPassword(e.target.value)}
-    />
-
-    <button type="submit" onClick={()=>{handleLogin()}}>Log In</button>
-    <button type="submit" onClick={()=>{handleSignUp()}}>Sign Up</button>
-    </>
+            <button className="login-btn"type="submit" onClick={()=>{handleLogin()}}>Log In</button>
+            <button className="login-btn"type="submit" onClick={()=>{handleSignUp()}}>Sign Up</button>
+        </div>
+    </div>
     );
 };
