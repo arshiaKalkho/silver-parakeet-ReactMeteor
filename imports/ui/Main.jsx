@@ -16,7 +16,7 @@ export default function Main(props){
 
     return(
         <div>
-            <button className="logout-btn"onClick={()=>{logOut}}>LogOut</button>
+            <button className="logout-btn"onClick={()=>{logOut()}}>LogOut</button>
             <newConvForm user={user}/>
             { 
                 conversations.map((index)=>{
